@@ -4,7 +4,7 @@ const authRouter = require("express").Router();
 const jwt = require("jsonwebtoken");
 const { generateOtp } = require("../utils/generateOpt");
 const { sendEmail } = require("../utils/sendmail");
-const User = require("../models/user");
+const User = require("../models/User");
 const Customer = require("../models/customer");
 
 // <--------Owners------->
