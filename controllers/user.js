@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const RestaurantDetails = require("../models/restaurantDetails");
-const OwnerDetails = require("../models/ownerDetails");
+const OwnerDetails = require("../models/OwnerDetails");
 const userRouter = require("express").Router();
 const { userAuthFilter } = require("../utils/middleware");
 const Customer = require("../models/customer");
