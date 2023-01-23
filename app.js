@@ -33,7 +33,7 @@ const corsOpts = {
 
   allowedHeaders: ["Content-Type"],
 };
-app.use(cors(corsOpts));
+app.use(cors());
 app.use(express.static("public"));
 // app.use(express.json())
 app.use(middleware.requestLogger);
