@@ -118,8 +118,9 @@ authRouter.post("/getOtp", async (req, res) => {
 authRouter.post("/login", async (req, res) => {
   try {
     const userObj = await User.findOne({ email: req.body.email });
-    console.log(userObj);
-    if (!userObj) return res.status(401).json({ msg: "wrong creditials" });
+    if (!userObj) {
+      return res.status(401).json({ msg: "wrong creditials" });
+    }
     if (!userObj.verified)
       return res.status(400).json({ msg: "User not verified" });
 
@@ -260,17 +261,14 @@ authRouter.post("/customer/login", async (req, res) => {
   try {
     const userObj = await Customer.findOne({ email: req.body.email });
     if (!userObj) return res.status(401).json({ msg: "wrong creditials" });
-    //    !userObj && res.status(401).json("wrong creditials");
     if (!userObj.verified)
       return res.status(400).json({ msg: "User not verified" });
-    //    !userObj.verified && res.status(400).json({msg : 'User not verified'})
 
     const validPassword = await bcrypt.compare(
       req.body.password,
       userObj.password
     );
     if (!validPassword) return res.status(400).json({ msg: "Wrong Password" });
-    //    !validPassword && res.status(400).json("Wrong Password")
     let now = new Date();
     let expires_in = new Date(now.setSeconds(now.getSeconds() + 10));
     const accessToken = jwt.sign(

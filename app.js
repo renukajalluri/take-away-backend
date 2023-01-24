@@ -18,6 +18,10 @@ mongoose
   .then(() => logger.info("DB connected Sucessfully"))
   .catch((err) => logger.error("DB connection failed: ", err));
 
+app.use(express.json({ limit: "50mb" })); // for incoming Request Object as json
+
+app.use(express.urlencoded({ limit: "50mb", extended: true })); // for content-type = application/ x-www-form-urlencoded
+
 app.use(
   bodyParser.urlencoded({
     limit: "50mb",

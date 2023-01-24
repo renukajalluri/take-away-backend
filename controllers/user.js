@@ -16,6 +16,7 @@ userRouter.get("/customerUser/customers", async (req, res) => {
 
 userRouter.get("/customerUser/customer", userAuthFilter, async (req, res) => {
   try {
+    console.log("hello");
     console.log("token", req.params.token.id);
     const customer = await Customer.findOne({ _id: req.params.token.id });
     console.log(customer);
